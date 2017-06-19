@@ -13,9 +13,18 @@ public class TraceurConfig {
         this(shouldFilterStackTraces, null);
     }
 
-    public TraceurConfig(boolean shouldFilterStackTraces, @Nullable Consumer<Throwable> throwableListener) {
+    public TraceurConfig(boolean shouldFilterStackTraces,
+                         @Nullable Traceur.AssemblyLogLevel assemblyLogLevel) {
+        this(shouldFilterStackTraces, assemblyLogLevel, null);
+    }
+
+    public TraceurConfig(boolean shouldFilterStackTraces,
+                         @Nullable Traceur.AssemblyLogLevel assemblyLogLevel,
+                         @Nullable Consumer<Throwable> throwableListener) {
         this.shouldFilterStackTraces = shouldFilterStackTraces;
-        this.assemblyLogLevel = Traceur.AssemblyLogLevel.SHOW_ALL;
+        this.assemblyLogLevel = assemblyLogLevel == null
+                ? Traceur.AssemblyLogLevel.SHOW_ALL
+                : assemblyLogLevel;
         this.throwableListener = throwableListener;
     }
 
