@@ -47,7 +47,7 @@ final class CompletableOnAssemblyCallable extends Completable implements Callabl
             return ((Callable<Object>)source).call();
         } catch (Exception ex) {
             Exceptions.throwIfFatal(ex);
-            throw (Exception)assembled.appendTo(ex);
+            throw (Exception)assembled.appendAndNotify(ex);
         }
     }
 }

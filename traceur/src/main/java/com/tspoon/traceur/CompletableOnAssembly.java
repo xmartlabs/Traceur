@@ -65,7 +65,7 @@ final class CompletableOnAssembly extends Completable {
 
         @Override
         public void onError(Throwable t) {
-            actual.onError(assembled.appendTo(t));
+            actual.onError(assembled.appendAndNotify(t));
         }
 
         @Override

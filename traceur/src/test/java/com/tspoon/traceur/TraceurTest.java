@@ -33,7 +33,7 @@ public class TraceurTest {
         }
 
         // Enable Traceur and ensure call site is shown
-        Traceur.enableLogging();
+        Traceur.enableLogging(new TraceurConfig(true));
         try {
             StreamFactory.createNullPointerExceptionObservable().blockingFirst();
             Assertions.failBecauseExceptionWasNotThrown(Throwable.class);
@@ -76,7 +76,7 @@ public class TraceurTest {
 
     @Test
     public void usingRetryDoesNotFail() {
-        Traceur.enableLogging();
+        Traceur.enableLogging(new TraceurConfig(true));
 
         StreamFactory.createNullPointerExceptionObservable()
                 .doOnError(new Consumer<Throwable>() {

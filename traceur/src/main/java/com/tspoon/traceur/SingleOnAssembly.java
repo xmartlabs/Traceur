@@ -72,7 +72,7 @@ final class SingleOnAssembly<T> extends Single<T> {
 
         @Override
         public void onError(Throwable t) {
-            actual.onError(assembled.appendTo(t));
+            actual.onError(assembled.appendAndNotify(t));
         }
 
         @Override

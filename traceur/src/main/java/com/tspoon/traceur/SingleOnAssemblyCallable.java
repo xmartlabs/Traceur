@@ -49,7 +49,7 @@ final class SingleOnAssemblyCallable<T> extends Single<T> implements Callable<T>
             return ((Callable<T>)source).call();
         } catch (Exception ex) {
             Exceptions.throwIfFatal(ex);
-            throw (Exception)assembled.appendTo(ex);
+            throw (Exception)assembled.appendAndNotify(ex);
         }
     }
 }
