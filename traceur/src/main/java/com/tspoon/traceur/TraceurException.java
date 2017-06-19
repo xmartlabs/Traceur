@@ -47,7 +47,7 @@ public class TraceurException extends RuntimeException {
     }
 
     /**
-     * Adds this as the root cause of the given exception and then it's notified to the throwable consumer.
+     * Adds this as the root cause of the given exception and then it's notified to the throwable listener.
      * If the current root cause is already a {@code TraceurException}, and the log level is set to
      * {@link AssemblyLogLevel#SHOW_ONLY_FIRST}, then this will not be appended to the exception
      * If the log level is {@link AssemblyLogLevel#NONE} the throwable is not updated
