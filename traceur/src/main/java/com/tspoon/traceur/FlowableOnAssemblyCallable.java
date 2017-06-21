@@ -56,7 +56,7 @@ final class FlowableOnAssemblyCallable<T> extends Flowable<T> implements Callabl
             return ((Callable<T>)source).call();
         } catch (Exception ex) {
             Exceptions.throwIfFatal(ex);
-            throw (Exception)assembled.appendTo(ex);
+            throw (Exception)assembled.appendAndNotify(ex);
         }
     }
 }

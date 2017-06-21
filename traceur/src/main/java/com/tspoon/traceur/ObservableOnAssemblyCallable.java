@@ -49,7 +49,7 @@ final class ObservableOnAssemblyCallable<T> extends Observable<T> implements Cal
             return ((Callable<T>)source).call();
         } catch (Exception ex) {
             Exceptions.throwIfFatal(ex);
-            throw (Exception)assembled.appendTo(ex);
+            throw (Exception)assembled.appendAndNotify(ex);
         }
     }
 }

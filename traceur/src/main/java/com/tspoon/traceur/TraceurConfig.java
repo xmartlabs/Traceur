@@ -1,20 +1,44 @@
 package com.tspoon.traceur;
 
-public class TraceurConfig {
+import io.reactivex.annotations.NonNull;
+import io.reactivex.annotations.Nullable;
+import io.reactivex.functions.Consumer;
 
+public class TraceurConfig {
     private final boolean shouldFilterStackTraces;
-    private final Traceur.LogLevel logLevel;
+    private final Traceur.AssemblyLogLevel assemblyLogLevel;
+    private final Consumer<Throwable> throwableListener;
 
     public TraceurConfig(boolean shouldFilterStackTraces) {
-        this.shouldFilterStackTraces = shouldFilterStackTraces;
-        this.logLevel = Traceur.LogLevel.SHOW_ALL;
+        this(shouldFilterStackTraces, null);
     }
 
-    public boolean shouldFilterStackTraces() {
+    public TraceurConfig(boolean shouldFilterStackTraces,
+                         @Nullable Traceur.AssemblyLogLevel assemblyLogLevel) {
+        this(shouldFilterStackTraces, assemblyLogLevel, null);
+    }
+
+    public TraceurConfig(boolean shouldFilterStackTraces,
+                         @Nullable Traceur.AssemblyLogLevel assemblyLogLevel,
+                         @Nullable Consumer<Throwable> throwableListener) {
+        this.shouldFilterStackTraces = shouldFilterStackTraces;
+        this.assemblyLogLevel = assemblyLogLevel == null
+                ? Traceur.AssemblyLogLevel.SHOW_ALL
+                : assemblyLogLevel;
+        this.throwableListener = throwableListener;
+    }
+
+    boolean shouldFilterStackTraces() {
         return shouldFilterStackTraces;
     }
 
-    public Traceur.LogLevel getLogLevel() {
-        return logLevel;
+    @NonNull
+    Traceur.AssemblyLogLevel getAssemblyLogLevel() {
+        return assemblyLogLevel;
+    }
+
+    @Nullable
+    Consumer<Throwable> getThrowableListener() {
+        return throwableListener;
     }
 }
