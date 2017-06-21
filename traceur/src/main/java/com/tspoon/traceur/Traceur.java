@@ -23,6 +23,15 @@ public class Traceur {
     }
 
     /**
+     * Enable RxJava2 call-site logging with the default config.
+     *
+     * @see #enableLogging(TraceurConfig)
+     */
+    public static void enableLogging() {
+        enableLogging(new TraceurConfig(true));
+    }
+
+    /**
      * Enable RxJava2 call-site logging with the given config.
      * Note: This will overwrite all {@code RxJavaPlugins.setXXXAssembly} plugins.
      *
