@@ -61,12 +61,12 @@ final class FlowableOnAssembly<T> extends Flowable<T> {
 
         @Override
         public void onNext(T t) {
-            actual.onNext(t);
+            downstream.onNext(t);
         }
 
         @Override
         public void onError(Throwable t) {
-            actual.onError(assembled.appendAndNotify(t));
+            downstream.onError(assembled.appendAndNotify(t));
         }
 
         @Override
@@ -98,17 +98,17 @@ final class FlowableOnAssembly<T> extends Flowable<T> {
 
         @Override
         public void onNext(T t) {
-            actual.onNext(t);
+            downstream.onNext(t);
         }
 
         @Override
         public boolean tryOnNext(T t) {
-            return actual.tryOnNext(t);
+            return downstream.tryOnNext(t);
         }
 
         @Override
         public void onError(Throwable t) {
-            actual.onError(assembled.appendAndNotify(t));
+            downstream.onError(assembled.appendAndNotify(t));
         }
 
         @Override
